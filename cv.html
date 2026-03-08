@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Dickson — CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a14;
+            color: #c8d6e5;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* ── Print button ── */
+        .print-bar {
+            max-width: 800px;
+            margin: 0 auto 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .print-bar a {
+            color: rgba(0,212,255,0.6);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .print-bar a:hover { color: #00d4ff; }
+        .btn-print {
+            background: transparent;
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            padding: 8px 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .btn-print:hover {
+            background: #00d4ff;
+            color: #050510;
+        }
+
+        /* ── CV card ── */
+        .cv {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #0d0d1f;
+            border: 1px solid rgba(0,212,255,0.12);
+            padding: 48px 52px;
+            position: relative;
+        }
+        /* corner decorators */
+        .cv::before, .cv::after {
+            content: '';
+            position: absolute;
+            width: 16px; height: 16px;
+            border-color: rgba(0,212,255,0.4);
+            border-style: solid;
+        }
+        .cv::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+        .cv::after  { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+        /* ── Header ── */
+        .cv-header { border-bottom: 1px solid rgba(0,212,255,0.1); padding-bottom: 28px; margin-bottom: 28px; }
+        .cv-name {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+        .cv-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: rgba(0,212,255,0.7);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .cv-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .cv-contacts a, .cv-contacts span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: #7a8fa8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .cv-contacts a:hover { color: #00d4ff; }
+
+        /* ── Sections ── */
+        .cv-section { margin-bottom: 28px; }
+        .cv-section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #00d4ff;
+            opacity: 0.7;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cv-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0,212,255,0.2), transparent);
+        }
+
+        /* ── Summary ── */
+        .cv-summary {
+            font-size: 0.88rem;
+            line-height: 1.75;
+            color: #94a9be;
+        }
+
+        /* ── Experience ── */
+        .exp-item { margin-bottom: 20px; }
+        .exp-item:last-child { margin-bottom: 0; }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2px;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .exp-role { font-size: 0.95rem; font-weight: 600; color: #e2e8f0; }
+        .exp-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: rgba(0,212,255,0.5);
+            white-space: nowrap;
+        }
+        .exp-company { font-size: 0.8rem; color: #00d4ff; margin-bottom: 8px; font-weight: 500; }
+        .exp-bullets { list-style: none; }
+        .exp-bullets li {
+            font-size: 0.83rem;
+            color: #7a8fa8;
+            line-height: 1.65;
+            padding-left: 14px;
+            position: relative;
+            margin-bottom: 3px;
+        }
+        .exp-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: rgba(0,212,255,0.4);
+            font-size: 0.65rem;
+            top: 2px;
+        }
+
+        /* ── Projects ── */
+        .project-item { margin-bottom: 14px; }
+        .project-item:last-child { margin-bottom: 0; }
+        .project-name { font-size: 0.88rem; font-weight: 600; color: #e2e8f0; margin-bottom: 2px; }
+        .project-desc { font-size: 0.8rem; color: #7a8fa8; line-height: 1.6; }
+        .project-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: rgba(0,212,255,0.5);
+            text-decoration: none;
+        }
+        .project-link:hover { color: #00d4ff; }
+
+        /* ── Skills ── */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border: 1px solid rgba(0,212,255,0.2);
+            background: rgba(0,212,255,0.04);
+            color: #00d4ff;
+            border-radius: 2px;
+        }
+
+        /* ── Education ── */
+        .edu-name { font-size: 0.92rem; font-weight: 600; color: #e2e8f0; }
+        .edu-degree { font-size: 0.82rem; color: #7a8fa8; margin-top: 2px; }
+        .edu-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: rgba(0,212,255,0.5);
+        }
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        /* ── Certifications ── */
+        .cert-item {
+            font-size: 0.83rem;
+            color: #7a8fa8;
+            padding-left: 14px;
+            position: relative;
+            margin-bottom: 5px;
+            line-height: 1.6;
+        }
+        .cert-item::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: rgba(168,85,247,0.5);
+            font-size: 0.65rem;
+            top: 2px;
+        }
+
+        /* ── PRINT STYLES ── */
+        @media print {
+            @page { margin: 0.6in; size: A4; }
+            body { background: #fff; padding: 0; color: #111; }
+            .print-bar { display: none; }
+            .cv {
+                background: #fff;
+                border: none;
+                padding: 0;
+                max-width: 100%;
+                box-shadow: none;
+            }
+            .cv::before, .cv::after { display: none; }
+            .cv-name { color: #111 !important; -webkit-text-fill-color: #111 !important; }
+            .cv-title { color: #555; }
+            .cv-section-title { color: #0099bb; opacity: 1; }
+            .cv-section-title::after { background: linear-gradient(90deg, #cde, transparent); }
+            .cv-contacts a, .cv-contacts span { color: #444; }
+            .cv-summary, .exp-bullets li, .project-desc, .edu-degree, .cert-item { color: #333; }
+            .exp-role, .project-name, .edu-name { color: #111; }
+            .exp-company { color: #0099bb; }
+            .exp-date, .edu-year, .project-link { color: #666; }
+            .exp-bullets li::before, .cert-item::before { color: #0099bb; }
+            .skill-pill { border-color: #cde; background: #f0f8ff; color: #0099bb; }
+            .cv-header { border-color: #ddd; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="print-bar">
+        <a href="index.html">← Back to Portfolio</a>
+        <button class="btn-print" onclick="window.print()">⬇ Save as PDF</button>
+    </div>
+
+    <div class="cv">
+
+        <!-- Header -->
+        <div class="cv-header">
+            <div class="cv-name">Victor Dickson</div>
+            <div class="cv-title">CTO &nbsp;/&nbsp; Web3 Architect &nbsp;/&nbsp; Data Scientist</div>
+            <div class="cv-contacts">
+                <a href="mailto:victordickson1998@gmail.com">
+                    <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    victordickson1998@gmail.com
+                </a>
+                <span>
+                    <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Lagos State, Nigeria
+                </span>
+                <a href="https://github.com/vicintel" target="_blank">
+                    <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    github.com/vicintel
+                </a>
+                <a href="https://linkedin.com/in/victor-dickson-0b7650122" target="_blank">
+                    <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    linkedin.com/in/victor-dickson
+                </a>
+                <a href="https://victor-dusky.vercel.app" target="_blank">
+                    <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
+                    victor-dusky.vercel.app
+                </a>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="cv-section">
+            <div class="cv-section-title">[ Professional Summary ]</div>
+            <p class="cv-summary">
+                Results-driven CTO and full-stack technologist with 5+ years of experience building scalable systems at the intersection of Web3, data science, and product engineering. Currently leading <strong style="color:#e2e8f0;">FavGrab</strong>, an on-demand delivery platform serving Southeast Nigeria. Skilled in architecting blockchain solutions, developing machine learning models, and translating technical strategy into measurable business outcomes. FUTO alumnus with a track record of delivering high-uptime platforms, improving ML accuracy by 30%, and shipping cross-platform applications.
+            </p>
+        </div>
+
+        <!-- Experience -->
+        <div class="cv-section">
+            <div class="cv-section-title">[ Experience ]</div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-role">Chief Technology Officer</span>
+                    <span class="exp-date">2023 — Present</span>
+                </div>
+                <div class="exp-company">FavGrab · Lagos, Nigeria</div>
+                <ul class="exp-bullets">
+                    <li>Defined and executed the full technical strategy for an on-demand food and grocery delivery platform serving Southeast Nigeria</li>
+                    <li>Designed and scaled infrastructure connecting 100+ local restaurants and supermarkets with customers, achieving 99.9% uptime at 50K+ deliveries</li>
+                    <li>Built and led cross-functional engineering team responsible for web, mobile, and backend systems</li>
+                    <li>Implemented data pipelines and analytics dashboards to drive operational and business decisions</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-role">Data Scientist Intern</span>
+                    <span class="exp-date">Oct 2023 — Dec 2023</span>
+                </div>
+                <div class="exp-company">Codsoft · Remote</div>
+                <ul class="exp-bullets">
+                    <li>Developed advanced data preprocessing pipelines and supervised machine learning models</li>
+                    <li>Built a movie rating prediction model achieving 85% accuracy using regression with genre, director, and actor features</li>
+                    <li>Applied feature engineering and cross-validation techniques to improve model robustness</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-role">Data Analyst Intern</span>
+                    <span class="exp-date">Aug 2023 — Nov 2023</span>
+                </div>
+                <div class="exp-company">Meriskill · Remote</div>
+                <ul class="exp-bullets">
+                    <li>Implemented statistical models and predictive analytics on healthcare datasets</li>
+                    <li>Developed a diabetes diagnostic engine with a 30% improvement in accuracy over baseline models using Python and Scikit-learn</li>
+                    <li>Created Tableau dashboards to visualize sales trends, profit margins, and product performance for stakeholder reporting</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="cv-section">
+            <div class="cv-section-title">[ Key Projects ]</div>
+
+            <div class="project-item">
+                <div class="project-name">FavGrab Platform &nbsp;<a class="project-link" href="https://favgrab.com" target="_blank">favgrab.com ↗</a></div>
+                <div class="project-desc">On-demand delivery infrastructure for Southeast Nigeria. 50K+ deliveries, 99.9% uptime, 100+ merchant integrations. Tech: Node.js, Flutter, cloud infrastructure.</div>
+            </div>
+            <div class="project-item">
+                <div class="project-name">Bloom App &nbsp;<a class="project-link" href="https://bloom-app-iota.vercel.app" target="_blank">bloom-app-iota.vercel.app ↗</a></div>
+                <div class="project-desc">AI-powered menstrual and wellness companion. Cross-platform (iOS, Android, Web) built with Flutter/Dart. Features biometric auth, cycle tracking, and personalized AI insights.</div>
+            </div>
+            <div class="project-item">
+                <div class="project-name">Diabetes Diagnostic Engine &nbsp;<a class="project-link" href="https://github.com/vicintel/Diabetes-Patients-Data-analysis" target="_blank">GitHub ↗</a></div>
+                <div class="project-desc">ML model predicting diabetes outcomes from diagnostic measurements. Achieved 30% accuracy improvement over baseline using Python and Scikit-learn.</div>
+            </div>
+            <div class="project-item">
+                <div class="project-name">Sales Analytics Dashboard &nbsp;<a class="project-link" href="https://github.com/vicintel/Sales-Data-Analysis-" target="_blank">GitHub ↗</a></div>
+                <div class="project-desc">Comprehensive Tableau dashboard identifying best-selling products, profit margins, and market trends from large-scale sales data.</div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="cv-section">
+            <div class="cv-section-title">[ Technical Skills ]</div>
+            <div class="skills-grid">
+                <span class="skill-pill">Python</span>
+                <span class="skill-pill">Solidity</span>
+                <span class="skill-pill">SQL</span>
+                <span class="skill-pill">JavaScript</span>
+                <span class="skill-pill">HTML / CSS</span>
+                <span class="skill-pill">Flutter / Dart</span>
+                <span class="skill-pill">Tableau</span>
+                <span class="skill-pill">Scikit-learn</span>
+                <span class="skill-pill">Machine Learning</span>
+                <span class="skill-pill">Data Engineering</span>
+                <span class="skill-pill">Blockchain</span>
+                <span class="skill-pill">Smart Contracts</span>
+                <span class="skill-pill">Web3.js</span>
+                <span class="skill-pill">Git / GitHub</span>
+                <span class="skill-pill">Vercel</span>
+                <span class="skill-pill">REST APIs</span>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="cv-section">
+            <div class="cv-section-title">[ Education ]</div>
+            <div class="edu-header">
+                <div>
+                    <div class="edu-name">Federal University of Technology, Owerri (FUTO)</div>
+                    <div class="edu-degree">B.Tech — Management Technology</div>
+                </div>
+                <div class="edu-year">Graduated 2023</div>
+            </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="cv-section">
+            <div class="cv-section-title">[ Certifications & Training ]</div>
+            <div class="cert-item">Data Science Internship — Codsoft (2023)</div>
+            <div class="cert-item">Data Analytics Internship — Meriskill (2023)</div>
+            <div class="cert-item">Web Development Program — Getbundi</div>
+            <div class="cert-item">Blockchain & Web3 Development — Self-directed / ALX</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
