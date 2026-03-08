@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Dickson - CTO, Web3 Architect & Data Scientist</title>
+    <meta name="description" content="Victor Dickson - CTO, Web3 Architect & Data Scientist. Building scalable systems at the intersection of technology, data, and decentralized systems.">
+    <meta name="keywords" content="Victor Dickson, CTO, Web3 Architect, Data Scientist, Blockchain, FavGrab, Nigeria, FUTO">
+    <meta name="author" content="Victor Dickson">
+    <meta property="og:title" content="Victor Dickson - CTO & Web3 Architect">
+    <meta property="og:description" content="Technical leader building products at the intersection of Web3, data science, and scalable systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="g1.jpeg">
+    <meta property="og:url" content="https://victordickson.dev">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Victor Dickson - CTO & Web3 Architect">
+    <meta name="twitter:image" content="g1.jpeg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Victor Dickson",
+        "jobTitle": "Chief Technology Officer",
+        "worksFor": { "@type": "Organization", "name": "FavGrab" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Federal University of Technology, Owerri" },
+        "url": "https://victordickson.dev",
+        "sameAs": ["https://linkedin.com/in/victor-dickson-0b7650122","https://github.com/vicintel","https://x.com/Vicinteltech"]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --cyan: #00d4ff;
+            --purple: #a855f7;
+            --dark: #050510;
+            --surface: #0d0d1f;
+            --border: rgba(0,212,255,0.12);
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: #c8d6e5; }
+        html { scroll-behavior: smooth; }
+
+        section, div, p, h1, h2, h3, h4, h5, h6 { opacity: 1 !important; visibility: visible !important; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+
+        .cyber-grid {
+            background-image:
+                linear-gradient(rgba(0,212,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.035) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .neon-text {
+            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 50%, #00d4ff 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: neon-shift 4s ease infinite;
+        }
+        @keyframes neon-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nav-glass {
+            background: rgba(5,5,16,0.88);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+        }
+
+        .hero-bg {
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(0,212,255,0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 20%, rgba(168,85,247,0.07) 0%, transparent 55%),
+                var(--dark);
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--cyan);
+            font-size: 0.68rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        /* ── Buttons ── */
+        .btn-cyber {
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .btn-cyber::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--cyan);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+        .btn-cyber:hover::before { transform: scaleX(1); }
+        .btn-cyber:hover { color: var(--dark); box-shadow: 0 0 20px rgba(0,212,255,0.45); }
+
+        .btn-glow {
+            background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(168,85,247,0.12));
+            border: 1px solid rgba(0,212,255,0.5);
+            color: var(--cyan);
+            transition: all 0.3s ease;
+        }
+        .btn-glow:hover {
+            background: linear-gradient(135deg, rgba(0,212,255,0.22), rgba(168,85,247,0.22));
+            box-shadow: 0 0 25px rgba(0,212,255,0.4);
+        }
+
+        /* ── Cards ── */
+        .glass-card {
+            background: rgba(13,13,31,0.8);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(0,212,255,0.35);
+            box-shadow: 0 0 28px rgba(0,212,255,0.1);
+        }
+
+        .project-card {
+            background: rgba(13,13,31,0.9);
+            border: 1px solid rgba(0,212,255,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .project-card:hover::before { opacity: 1; }
+        .project-card:hover {
+            border-color: rgba(0,212,255,0.35);
+            box-shadow: 0 0 40px rgba(0,212,255,0.1), 0 20px 40px rgba(0,0,0,0.5);
+            transform: translateY(-6px);
+        }
+
+        .exp-card {
+            background: rgba(13,13,31,0.8);
+            border: 1px solid rgba(0,212,255,0.08);
+            border-left: 2px solid var(--cyan);
+            transition: all 0.3s ease;
+        }
+        .exp-card:hover {
+            border-color: rgba(168,85,247,0.3);
+            border-left-color: var(--purple);
+            box-shadow: 0 0 25px rgba(0,212,255,0.08), -3px 0 16px rgba(0,212,255,0.15);
+        }
+
+        .expertise-card {
+            background: rgba(13,13,31,0.8);
+            border: 1px solid rgba(0,212,255,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .expertise-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .expertise-card:hover::after { opacity: 1; }
+        .expertise-card:hover {
+            border-color: rgba(0,212,255,0.35);
+            box-shadow: 0 0 28px rgba(0,212,255,0.08);
+            transform: translateY(-4px);
+        }
+
+        .stat-box {
+            background: rgba(0,212,255,0.03);
+            border: 1px solid rgba(0,212,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .stat-box:hover {
+            background: rgba(0,212,255,0.07);
+            border-color: rgba(0,212,255,0.4);
+            box-shadow: 0 0 18px rgba(0,212,255,0.12);
+        }
+
+        /* ── Skill tag ── */
+        .skill-tag {
+            border: 1px solid rgba(0,212,255,0.2);
+            background: rgba(0,212,255,0.04);
+            color: #00d4ff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background: rgba(0,212,255,0.12);
+            border-color: var(--cyan);
+            box-shadow: 0 0 10px rgba(0,212,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        /* ── Form ── */
+        .form-input {
+            background: rgba(0,212,255,0.03);
+            border: 1px solid rgba(0,212,255,0.15);
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--cyan);
+            box-shadow: 0 0 14px rgba(0,212,255,0.2);
+            background: rgba(0,212,255,0.05);
+        }
+        .form-input::placeholder { color: #3a4a5a; }
+
+        /* ── Live badge ── */
+        .live-badge {
+            background: rgba(0,255,100,0.08);
+            border: 1px solid rgba(0,255,100,0.35);
+            color: #00ff64;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 1px;
+        }
+
+        /* ── Profile ring ── */
+        @keyframes spin-slow { to { transform: rotate(360deg); } }
+        .spin-slow { animation: spin-slow 10s linear infinite; }
+
+        /* ── GSAP ── */
+        .gsap-reveal { opacity: 1; }
+
+        /* ── Scanline overlay ── */
+        .scanlines::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.025) 2px, rgba(0,0,0,0.025) 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ── Tag helper ── */
+        .tag-cyan  { background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.2);  color: #00d4ff; }
+        .tag-purple{ background: rgba(168,85,247,0.05);border: 1px solid rgba(168,85,247,0.2); color: #a855f7; }
+        .tag-pink  { background: rgba(236,72,153,0.05);border: 1px solid rgba(236,72,153,0.2); color: #f472b6; }
+        .tag-amber { background: rgba(245,158,11,0.05);border: 1px solid rgba(245,158,11,0.2); color: #fbbf24; }
+        .tag-orange{ background: rgba(234,88,12,0.05); border: 1px solid rgba(234,88,12,0.2);  color: #fb923c; }
+        .tag-green { background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.2);  color: #00d4ff; }
+    </style>
+</head>
+<body class="bg-[#050510] text-gray-300">
+
+    <!-- ── NAV ── -->
+    <nav class="fixed top-0 w-full nav-glass z-50" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-3 md:py-4">
+                <a href="#home" class="font-bold text-lg tracking-wide">
+                    <span class="neon-text">Victor</span><span class="text-gray-600">.</span><span class="neon-text">Dickson</span>
+                </a>
+                <ul class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <li><a href="#home"       class="font-mono text-xs tracking-widest uppercase text-gray-400 hover:text-cyan-400 transition">Home</a></li>
+                    <li><a href="#about"      class="font-mono text-xs tracking-widest uppercase text-gray-400 hover:text-cyan-400 transition">About</a></li>
+                    <li><a href="#experience" class="font-mono text-xs tracking-widest uppercase text-gray-400 hover:text-cyan-400 transition">Experience</a></li>
+                    <li><a href="#expertise"  class="font-mono text-xs tracking-widest uppercase text-gray-400 hover:text-cyan-400 transition">Expertise</a></li>
+                    <li><a href="#projects"   class="font-mono text-xs tracking-widest uppercase text-gray-400 hover:text-cyan-400 transition">Projects</a></li>
+                    <li><a href="#contact"    class="btn-cyber px-4 py-2 rounded font-mono text-xs tracking-widest uppercase">Contact</a></li>
+                </ul>
+                <button id="mobileMenuBtn" class="md:hidden text-gray-400 hover:text-cyan-400 p-2 transition" aria-label="Toggle menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden border-t border-cyan-500/10" style="background:rgba(5,5,16,.98)">
+            <ul class="px-6 py-6 space-y-4 font-mono text-sm">
+                <li><a href="#home"       class="block text-gray-400 hover:text-cyan-400 transition py-1 tracking-wider">// HOME</a></li>
+                <li><a href="#about"      class="block text-gray-400 hover:text-cyan-400 transition py-1 tracking-wider">// ABOUT</a></li>
+                <li><a href="#experience" class="block text-gray-400 hover:text-cyan-400 transition py-1 tracking-wider">// EXPERIENCE</a></li>
+                <li><a href="#expertise"  class="block text-gray-400 hover:text-cyan-400 transition py-1 tracking-wider">// EXPERTISE</a></li>
+                <li><a href="#projects"   class="block text-gray-400 hover:text-cyan-400 transition py-1 tracking-wider">// PROJECTS</a></li>
+                <li><a href="#contact"    class="block text-cyan-400 py-1 tracking-wider">// CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section id="home" class="min-h-screen flex items-center justify-center hero-bg cyber-grid pt-20 px-4 relative scanlines">
+        <div class="max-w-4xl mx-auto text-center relative z-10 gsap-reveal">
+
+            <!-- Profile image -->
+            <div class="mb-8 flex justify-center">
+                <div class="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52">
+                    <!-- spinning ring -->
+                    <svg class="absolute inset-0 w-full h-full spin-slow" viewBox="0 0 200 200" fill="none">
+                        <circle cx="100" cy="100" r="96" stroke="url(#ringGrad)" stroke-width="1.5" stroke-dasharray="8 6"/>
+                        <defs>
+                            <linearGradient id="ringGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.8"/>
+                                <stop offset="50%" stop-color="#a855f7" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <!-- glow -->
+                    <div class="absolute inset-2 rounded-full" style="box-shadow: 0 0 40px rgba(0,212,255,0.25);"></div>
+                    <img src="g2.jpeg" alt="Victor Dickson" class="absolute inset-3 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)] rounded-full object-cover border border-cyan-500/20" loading="eager">
+                </div>
+            </div>
+
+            <div class="section-label mb-4">[ INITIALIZING PROFILE_v2026 ]</div>
+
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 tracking-tight">
+                <span class="neon-text">Victor Dickson</span>
+            </h1>
+
+            <p class="font-mono text-sm sm:text-base mb-6 tracking-widest uppercase" style="color: rgba(0,212,255,0.7);">
+                CTO &nbsp;/&nbsp; Web3 Architect &nbsp;/&nbsp; Data Scientist
+            </p>
+
+            <p class="text-sm sm:text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed text-gray-400 px-4">
+                Building scalable systems at the intersection of
+                <span class="text-cyan-400 font-semibold">technology</span>,
+                <span class="text-purple-400 font-semibold">data</span>, and
+                <span class="text-blue-400 font-semibold">decentralized systems</span>.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#projects" class="btn-glow px-8 py-4 rounded font-mono text-sm tracking-widest uppercase">View Projects</a>
+                <a href="#contact"  class="btn-cyber  px-8 py-4 rounded font-mono text-sm tracking-widest uppercase">Get In Touch</a>
+            </div>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-30">
+                <span class="font-mono text-xs text-cyan-400 tracking-widest">SCROLL</span>
+                <div class="w-px h-8 bg-gradient-to-b from-cyan-400 to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" class="py-24 md:py-32 relative cyber-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-label text-center mb-3 gsap-reveal">[ 01 // ABOUT_ME ]</div>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 neon-text gsap-reveal">About Me</h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Photo -->
+                <div class="relative order-2 md:order-1 gsap-reveal">
+                    <div class="relative">
+                        <div class="absolute -inset-px rounded" style="background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(168,85,247,0.15));"></div>
+                        <img src="g1.jpeg" alt="Victor Dickson" class="relative rounded w-full h-auto object-cover brightness-90 hover:brightness-100 transition duration-500">
+                        <!-- corner decorators -->
+                        <div class="absolute top-0 left-0  w-5 h-5 border-t-2 border-l-2 border-cyan-400"></div>
+                        <div class="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-cyan-400"></div>
+                        <div class="absolute bottom-0 left-0  w-5 h-5 border-b-2 border-l-2 border-purple-400"></div>
+                        <div class="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-purple-400"></div>
+                    </div>
+                </div>
+
+                <!-- Text -->
+                <div class="space-y-5 order-1 md:order-2 gsap-reveal">
+                    <p class="text-gray-300 leading-relaxed">
+                        A highly organized technical leader from
+                        <span class="text-cyan-400">Federal University of Technology, Owerri</span>.
+                        Evolved from data specialist into a CTO focused on building infrastructure that scales.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        Currently leading <span class="text-purple-400 font-semibold">FavGrab</span> —
+                        an on-demand food and grocery delivery platform transforming commerce in Southeast Nigeria.
+                    </p>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="stat-box rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold text-cyan-400 font-mono">50K+</div>
+                            <div class="text-xs text-gray-500 uppercase tracking-wider mt-1 font-mono">Deliveries</div>
+                        </div>
+                        <div class="stat-box rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold text-cyan-400 font-mono">99.9%</div>
+                            <div class="text-xs text-gray-500 uppercase tracking-wider mt-1 font-mono">Uptime</div>
+                        </div>
+                        <div class="stat-box rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold text-purple-400 font-mono">30%</div>
+                            <div class="text-xs text-gray-500 uppercase tracking-wider mt-1 font-mono">Accuracy Gain</div>
+                        </div>
+                        <div class="stat-box rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold text-purple-400 font-mono">5+</div>
+                            <div class="text-xs text-gray-500 uppercase tracking-wider mt-1 font-mono">Years Exp.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── TECH STACK ── -->
+    <section id="stack" class="py-14 border-y" style="border-color:rgba(0,212,255,0.07);background:rgba(0,212,255,0.015);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-label text-center mb-6 gsap-reveal">[ TECH_STACK ]</div>
+            <div class="flex flex-wrap justify-center gap-3 gsap-reveal">
+                <span class="skill-tag px-4 py-2 rounded">Python</span>
+                <span class="skill-tag px-4 py-2 rounded">Solidity</span>
+                <span class="skill-tag px-4 py-2 rounded">SQL</span>
+                <span class="skill-tag px-4 py-2 rounded">Tableau</span>
+                <span class="skill-tag px-4 py-2 rounded">Flutter</span>
+                <span class="skill-tag px-4 py-2 rounded">Dart</span>
+                <span class="skill-tag px-4 py-2 rounded">Git</span>
+                <span class="skill-tag px-4 py-2 rounded">Blockchain</span>
+                <span class="skill-tag px-4 py-2 rounded">Machine Learning</span>
+                <span class="skill-tag px-4 py-2 rounded">Data Engineering</span>
+                <span class="skill-tag px-4 py-2 rounded">Smart Contracts</span>
+                <span class="skill-tag px-4 py-2 rounded">Web3.js</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── EXPERIENCE ── -->
+    <section id="experience" class="py-24 md:py-32 cyber-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-label text-center mb-3 gsap-reveal">[ 02 // EXPERIENCE ]</div>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 neon-text gsap-reveal">Professional Experience</h2>
+
+            <div class="space-y-6">
+                <div class="exp-card rounded-xl p-6 sm:p-8 gsap-reveal">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Chief Technology Officer</h3>
+                            <p class="text-cyan-400 font-mono text-sm flex items-center gap-2">
+                                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse inline-block"></span>FavGrab
+                            </p>
+                        </div>
+                        <span class="text-xs font-mono text-cyan-400 mt-2 md:mt-0 px-3 py-1 rounded self-start" style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);">CURRENT</span>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex gap-3"><span class="text-cyan-400 font-mono flex-shrink-0">▸</span>Architecting technical strategy for on-demand delivery platform serving Southeast Nigeria</li>
+                        <li class="flex gap-3"><span class="text-cyan-400 font-mono flex-shrink-0">▸</span>Managing infrastructure connecting 100+ local restaurants and supermarkets with customers</li>
+                        <li class="flex gap-3"><span class="text-cyan-400 font-mono flex-shrink-0">▸</span>Scaling platform to handle 50K+ deliveries with 99.9% uptime</li>
+                    </ul>
+                </div>
+
+                <div class="exp-card rounded-xl p-6 sm:p-8 gsap-reveal">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Data Scientist (Intern)</h3>
+                            <p class="text-purple-400 font-mono text-sm">Codsoft</p>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500 mt-2 md:mt-0 px-3 py-1 rounded self-start" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">Oct 2023 — Dec 2023</span>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex gap-3"><span class="text-purple-400 font-mono flex-shrink-0">▸</span>Developed advanced data preprocessing pipelines and machine learning models</li>
+                        <li class="flex gap-3"><span class="text-purple-400 font-mono flex-shrink-0">▸</span>Built movie rating prediction model achieving 85% accuracy using genre, director, and actor features</li>
+                    </ul>
+                </div>
+
+                <div class="exp-card rounded-xl p-6 sm:p-8 gsap-reveal">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Data Analyst (Intern)</h3>
+                            <p class="text-cyan-400 font-mono text-sm">Meriskill</p>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500 mt-2 md:mt-0 px-3 py-1 rounded self-start" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">Aug 2023 — Nov 2023</span>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex gap-3"><span class="text-cyan-400 font-mono flex-shrink-0">▸</span>Implemented statistical models and predictive analytics for healthcare datasets</li>
+                        <li class="flex gap-3"><span class="text-cyan-400 font-mono flex-shrink-0">▸</span>Developed diabetes diagnostic model with 30% improvement in prediction accuracy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── EXPERTISE ── -->
+    <section id="expertise" class="py-24 md:py-32" style="background:rgba(0,212,255,0.015);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-label text-center mb-3 gsap-reveal">[ 03 // EXPERTISE ]</div>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 neon-text gsap-reveal">Core Expertise</h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="expertise-card rounded-xl p-6 sm:p-8 gsap-reveal">
+                    <div class="text-3xl mb-4">⛓️</div>
+                    <h3 class="text-base font-bold text-cyan-400 mb-3 font-mono">Web3 & Blockchain</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Smart contracts, DeFi protocols, airdrop systems, and cross-chain solutions</p>
+                </div>
+                <div class="expertise-card rounded-xl p-6 sm:p-8 gsap-reveal">
+                    <div class="text-3xl mb-4">🔧</div>
+                    <h3 class="text-base font-bold text-cyan-400 mb-3 font-mono">Data Engineering</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Python, SQL, Git, ETL pipelines, and robust data infrastructure architecture</p>
+                </div>
+                <div class="expertise-card rounded-xl p-6 sm:p-8 gsap-reveal">
+                    <div class="text-3xl mb-4">📊</div>
+                    <h3 class="text-base font-bold text-purple-400 mb-3 font-mono">Data Analytics</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Advanced Tableau visualization, statistical modeling, and business intelligence</p>
+                </div>
+                <div class="expertise-card rounded-xl p-6 sm:p-8 gsap-reveal">
+                    <div class="text-3xl mb-4">💼</div>
+                    <h3 class="text-base font-bold text-purple-400 mb-3 font-mono">Tech Leadership</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">CTO-level strategy, team management, and scaling technical organizations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section id="projects" class="py-24 md:py-32 cyber-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-label text-center mb-3 gsap-reveal">[ 04 // PROJECTS ]</div>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 neon-text gsap-reveal">Featured Projects</h2>
+
+            <div class="grid sm:grid-cols-2 gap-6 sm:gap-8">
+
+                <!-- FavGrab -->
+                <div class="project-card rounded-xl gsap-reveal">
+                    <div class="h-48 sm:h-52 bg-[#080818] flex items-center justify-center p-6 border-b relative overflow-hidden" style="border-color:rgba(0,212,255,0.07);">
+                        <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(0,212,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.5) 1px,transparent 1px);background-size:30px 30px;"></div>
+                        <img src="favg.png" alt="FavGrab" class="max-h-full max-w-full object-contain relative z-10" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white">FavGrab Platform</h3>
+                            <span class="live-badge px-2 py-0.5 rounded text-xs">LIVE</span>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">On-demand food and grocery delivery infrastructure for Southeast Nigeria, connecting customers with local restaurants through scalable tech.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag-cyan  px-2 py-1 text-xs font-mono rounded">Platform</span>
+                            <span class="tag-purple px-2 py-1 text-xs font-mono rounded">Logistics</span>
+                            <span class="tag-cyan  px-2 py-1 text-xs font-mono rounded">CTO</span>
+                        </div>
+                        <a href="https://favgrab.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-mono text-xs transition gap-2">
+                            View Case Study
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sales Analytics -->
+                <div class="project-card rounded-xl gsap-reveal">
+                    <div class="h-48 sm:h-52 flex items-center justify-center text-5xl relative overflow-hidden border-b" style="background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(0,80,200,0.12));border-color:rgba(0,212,255,0.07);">
+                        <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(0,212,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.5) 1px,transparent 1px);background-size:30px 30px;"></div>
+                        📈
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-base font-bold text-white mb-3">Sales Analytics Dashboard</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">Tableau dashboard analyzing sales data to identify best-selling products, profit margins, and market trends through large-scale visualization.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag-cyan px-2 py-1 text-xs font-mono rounded">Tableau</span>
+                            <span class="tag-cyan px-2 py-1 text-xs font-mono rounded">Analytics</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="https://github.com/vicintel/Sales-Data-Analysis-" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-mono text-xs transition gap-1">GitHub <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                            <a href="https://sales-data-analysis-opal.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-purple-400 hover:text-purple-300 font-mono text-xs transition gap-1">Live Demo <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diabetes -->
+                <div class="project-card rounded-xl gsap-reveal">
+                    <div class="h-48 sm:h-52 flex items-center justify-center text-5xl relative overflow-hidden border-b" style="background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(0,180,100,0.1));border-color:rgba(0,212,255,0.07);">
+                        <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(0,212,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.5) 1px,transparent 1px);background-size:30px 30px;"></div>
+                        🏥
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-base font-bold text-white mb-3">Diabetes Diagnostic Engine</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">ML model using diagnostic measurements to predict diabetes outcomes. Achieved 30% improvement in accuracy over baseline models.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag-cyan   px-2 py-1 text-xs font-mono rounded">Healthcare</span>
+                            <span class="tag-purple px-2 py-1 text-xs font-mono rounded">ML</span>
+                            <span class="tag-cyan   px-2 py-1 text-xs font-mono rounded">Python</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="https://github.com/vicintel/Diabetes-Patients-Data-analysis" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-mono text-xs transition gap-1">GitHub <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                            <a href="https://diabetes-patients-data-analysis.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-purple-400 hover:text-purple-300 font-mono text-xs transition gap-1">Live Demo <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Movie Rating -->
+                <div class="project-card rounded-xl gsap-reveal">
+                    <div class="h-48 sm:h-52 flex items-center justify-center text-5xl relative overflow-hidden border-b" style="background:linear-gradient(135deg,rgba(168,85,247,0.08),rgba(200,50,50,0.08));border-color:rgba(168,85,247,0.1);">
+                        <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(168,85,247,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.5) 1px,transparent 1px);background-size:30px 30px;"></div>
+                        🎬
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-base font-bold text-white mb-3">Movie Rating Predictor</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">Python regression model estimating movie ratings based on genre, director, and actor features with feature engineering and cross-validation.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag-cyan   px-2 py-1 text-xs font-mono rounded">Python</span>
+                            <span class="tag-purple px-2 py-1 text-xs font-mono rounded">Regression</span>
+                            <span class="tag-cyan   px-2 py-1 text-xs font-mono rounded">Scikit-learn</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="https://github.com/vicintel/MOVIE-RATING-PREDICTION-WITH-PYTHON" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-mono text-xs transition gap-1">GitHub <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                            <a href="https://movie-rating-prediction-with-python-weld.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-purple-400 hover:text-purple-300 font-mono text-xs transition gap-1">Live Demo <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloom App -->
+                <div class="project-card rounded-xl gsap-reveal">
+                    <div class="h-48 sm:h-52 flex items-center justify-center text-5xl relative overflow-hidden border-b" style="background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(168,85,247,0.12));border-color:rgba(236,72,153,0.1);">
+                        <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(236,72,153,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,.5) 1px,transparent 1px);background-size:30px 30px;"></div>
+                        🌸
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white">Bloom App</h3>
+                            <span class="live-badge px-2 py-0.5 rounded text-xs">LIVE</span>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">AI-powered menstrual and wellness companion built with Flutter. Features cycle tracking, biometric auth, and cross-platform support for iOS, Android & web.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag-pink   px-2 py-1 text-xs font-mono rounded">Flutter</span>
+                            <span class="tag-purple px-2 py-1 text-xs font-mono rounded">Dart</span>
+                            <span class="tag-cyan   px-2 py-1 text-xs font-mono rounded">AI</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="https://github.com/vicintel/bloom-app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-pink-400 hover:text-pink-300 font-mono text-xs transition gap-1">GitHub <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                            <a href="https://bloom-app-iota.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-purple-400 hover:text-purple-300 font-mono text-xs transition gap-1">Live Demo <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Omelette Recipe -->
+                <div class="project-card rounded-xl gsap-reveal">
+                    <div class="h-48 sm:h-52 flex items-center justify-center text-5xl relative overflow-hidden border-b" style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(234,88,12,0.08));border-color:rgba(245,158,11,0.1);">
+                        <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(245,158,11,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,.5) 1px,transparent 1px);background-size:30px 30px;"></div>
+                        🍳
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-base font-bold text-white">Portfolio website</h3>
+                            <span class="live-badge px-2 py-0.5 rounded text-xs">LIVE</span>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">Clean, responsive Portfolio webpage with semantic HTML and CSS. Demonstrates front-end fundamentals with accessible, well-structured design.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag-amber  px-2 py-1 text-xs font-mono rounded">HTML</span>
+                            <span class="tag-orange px-2 py-1 text-xs font-mono rounded">CSS</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <a href="https://github.com/vicintel/Simple-Omelette-Recipe" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-amber-400 hover:text-amber-300 font-mono text-xs transition gap-1">GitHub <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                            <a href="https://simple-omelette-recipe-eight.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-orange-400 hover:text-orange-300 font-mono text-xs transition gap-1">Live Demo <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact" class="py-24 md:py-32 relative" style="background:radial-gradient(ellipse at 50% 100%,rgba(0,212,255,0.05) 0%,transparent 65%),#050510;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="section-label text-center mb-3 gsap-reveal">[ 05 // CONTACT ]</div>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 neon-text gsap-reveal">Let's Build Together</h2>
+            <p class="text-center text-gray-500 mb-16 max-w-lg mx-auto font-mono text-sm gsap-reveal">Ready to collaborate on Web3 architecture, data infrastructure, or technical leadership.</p>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Info -->
+                <div class="space-y-5 gsap-reveal">
+                    <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                        <span class="text-xl">📧</span>
+                        <div>
+                            <p class="font-mono text-xs text-cyan-400 mb-1 tracking-widest">EMAIL</p>
+                            <a href="mailto:victordickson1998@gmail.com" class="text-gray-300 hover:text-cyan-400 transition text-sm break-all">victordickson1998@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                        <span class="text-xl">📍</span>
+                        <div>
+                            <p class="font-mono text-xs text-cyan-400 mb-1 tracking-widest">LOCATION</p>
+                            <p class="text-gray-300 text-sm">Lagos State, Nigeria</p>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                        <span class="text-xl">💼</span>
+                        <div>
+                            <p class="font-mono text-xs text-cyan-400 mb-1 tracking-widest">STATUS</p>
+                            <p class="text-green-400 text-sm flex items-center gap-2">
+                                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse inline-block"></span>
+                                Open to opportunities
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <p class="font-mono text-xs text-cyan-400 tracking-widest mb-4">// CONNECT</p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://linkedin.com/in/victor-dickson-0b7650122" target="_blank" rel="noopener noreferrer" class="btn-cyber px-5 py-2.5 rounded text-xs font-mono tracking-wider flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                LinkedIn
+                            </a>
+                            <a href="https://github.com/vicintel" target="_blank" rel="noopener noreferrer" class="btn-cyber px-5 py-2.5 rounded text-xs font-mono tracking-wider flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                            <a href="https://x.com/Vicinteltech" target="_blank" rel="noopener noreferrer" class="btn-cyber px-5 py-2.5 rounded text-xs font-mono tracking-wider flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                X (Twitter)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <form id="contactForm" action="https://formspree.io/f/xvzwokoa" method="POST" class="glass-card rounded-xl p-6 sm:p-8 space-y-4 gsap-reveal">
+                    <input type="text" name="_gotcha" style="display:none">
+                    <input type="hidden" name="_subject" value="New message from victordickson.dev">
+                    <div>
+                        <label for="name" class="block font-mono text-xs text-cyan-400 mb-2 tracking-widest">NAME</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" class="form-input w-full p-4 rounded-lg" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block font-mono text-xs text-cyan-400 mb-2 tracking-widest">EMAIL</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" class="form-input w-full p-4 rounded-lg" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block font-mono text-xs text-cyan-400 mb-2 tracking-widest">MESSAGE</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your project..." rows="5" class="form-input w-full p-4 rounded-lg resize-none" required></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn" class="w-full btn-glow py-4 rounded-lg font-mono text-sm tracking-widest uppercase flex items-center justify-center gap-2 group disabled:opacity-50">
+                        <span id="btnText">Send Message</span>
+                        <svg id="btnIcon" class="w-4 h-4 transform group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </button>
+                    <p class="text-xs font-mono text-gray-600 text-center">
+                        Or email: <a href="mailto:victordickson1998@gmail.com" class="text-cyan-400/60 hover:text-cyan-400 transition">victordickson1998@gmail.com</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="py-8 text-center border-t" style="background:rgba(0,0,0,0.4);border-color:rgba(0,212,255,0.07);">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="font-mono text-xs text-gray-600 tracking-widest mb-1">© 2026 VICTOR DICKSON. ALL RIGHTS RESERVED.</p>
+            <p class="font-mono text-xs tracking-wider" style="color:rgba(0,212,255,0.3);">CTO // WEB3 ARCHITECT // DATA SCIENTIST</p>
+            <div class="mt-4 flex justify-center gap-6 text-xs font-mono text-gray-700">
+                <a href="#" class="hover:text-cyan-400 transition">Privacy</a>
+                <span>•</span>
+                <a href="#" class="hover:text-cyan-400 transition">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                const t = document.querySelector(this.getAttribute('href'));
+                if (t) {
+                    window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+
+        // GSAP
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            try {
+                gsap.from('#home > div', { opacity: 0.7, y: 24, duration: 1, ease: 'power3.out', clearProps: 'all' });
+                document.querySelectorAll('.gsap-reveal').forEach((el, i) => {
+                    gsap.from(el, {
+                        scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+                        opacity: 0.7, y: 18, duration: 0.55, delay: i * 0.04, ease: 'power2.out', clearProps: 'all'
+                    });
+                });
+            } catch(e) {}
+        }
+
+        // Mobile menu
+        const btn = document.getElementById('mobileMenuBtn');
+        const menu = document.getElementById('mobileMenu');
+        btn.addEventListener('click', e => { e.stopPropagation(); menu.classList.toggle('hidden'); });
+        document.addEventListener('click', e => { if (!menu.contains(e.target) && !btn.contains(e.target)) menu.classList.add('hidden'); });
+        window.addEventListener('resize', () => { if (window.innerWidth >= 768) menu.classList.add('hidden'); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') menu.classList.add('hidden'); });
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const sb = document.getElementById('submitBtn');
+            const bt = document.getElementById('btnText');
+            sb.disabled = true;
+            bt.textContent = 'SENDING...';
+            try {
+                const r = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { Accept: 'application/json' } });
+                if (r.ok) {
+                    bt.textContent = 'SENT ✓';
+                    this.reset();
+                    setTimeout(() => { bt.textContent = 'Send Message'; sb.disabled = false; }, 3000);
+                } else throw new Error();
+            } catch {
+                bt.textContent = 'FAILED — RETRY';
+                setTimeout(() => { bt.textContent = 'Send Message'; sb.disabled = false; }, 3000);
+            }
+        });
+
+        // Navbar border on scroll
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            nav.style.borderBottomColor = window.pageYOffset > 80 ? 'rgba(0,212,255,0.2)' : 'rgba(0,212,255,0.07)';
+        });
+    </script>
+</body>
+</html>
