@@ -1,6 +1,6 @@
 # myportfolio
 
-Source for my personal site — [myportfolio-iota-ten-29.vercel.app](https://myportfolio-iota-ten-29.vercel.app)
+Source for my personal site — [myportfolio-one-eta-18.vercel.app](https://myportfolio-one-eta-18.vercel.app)
 
 I'm Victor Dickson, a full-stack engineer in Lagos. I build commerce, payments and AI
 infrastructure for Nigerian businesses — mostly [Myshoplet](https://myshoplet.com), a
@@ -13,7 +13,7 @@ storefront and sales platform where I own the whole stack.
   so it couldn't happen again. The most honest page on the site.
 - **Also shipped** — a running log of smaller things
 - **What I work in** — the stack, without the skill-bar theatre
-- **[CV](https://myportfolio-iota-ten-29.vercel.app/cv.html)** — a printable one-pager
+- **[CV](https://myportfolio-one-eta-18.vercel.app/cv.html)** — a printable one-pager
 
 ## How it's built
 
