@@ -493,6 +493,29 @@ img{max-width:100%;height:auto;display:block}
 }
 @media(max-width:620px){.inc-row{grid-template-columns:1fr;gap:.15rem}}
 
+/* ─────────── also shipped ─────────── */
+.also{
+  margin:0;padding:0;list-style:none;
+  columns:2;column-gap:clamp(1.5rem,4vw,3.5rem);
+  border-top:1px solid var(--rule);
+}
+.also li{
+  break-inside:avoid;
+  padding:.6rem 0 .6rem 1.4rem;
+  border-bottom:1px solid var(--rule);
+  font-size:.94rem;
+  color:var(--ink-soft);
+  position:relative;
+}
+.also li::before{
+  content:'▸';
+  position:absolute;left:0;top:.6rem;
+  color:var(--credit);
+  font-family:var(--mono);
+  font-size:.7rem;
+}
+@media(max-width:760px){.also{columns:1}}
+
 /* ─────────── capabilities ─────────── */
 .cap-grid{
   display:grid;
@@ -594,6 +617,7 @@ img{max-width:100%;height:auto;display:block}
     <nav class="topnav" aria-label="Sections">
       <a href="#work">Work</a>
       <a href="#incidents">Incidents</a>
+      <a class="opt" href="#also">Log</a>
       <a class="opt" href="#capabilities">Capabilities</a>
       <a class="opt" href="cv.html">CV</a>
       <a href="#contact">Contact</a>
@@ -711,7 +735,7 @@ img{max-width:100%;height:auto;display:block}
           </p>
           <div class="entry-links">
             <a href="https://myshoplet.com" target="_blank" rel="noopener noreferrer">myshoplet.com ↗</a>
-            <a href="#incidents">Three incidents ↓</a>
+            <a href="#incidents">Six incidents ↓</a>
           </div>
         </div>
         <div class="entry-val">
@@ -812,7 +836,7 @@ img{max-width:100%;height:auto;display:block}
   <section class="sec shell" id="incidents">
     <div class="sec-head">
       <p class="eyebrow">Post-mortems</p>
-      <h2 class="h-sec">Three things that broke</h2>
+      <h2 class="h-sec">Six things that broke</h2>
       <p class="lede">A feature list says what I built. These say how I think when it goes wrong, which is the part of the job that actually costs money.</p>
     </div>
 
@@ -896,7 +920,109 @@ img{max-width:100%;height:auto;display:block}
         </dl>
       </article>
 
+      <article class="incident">
+        <div class="inc-top">
+          <span class="inc-id">INC-04 · billing</span>
+          <span class="inc-status">Resolved</span>
+        </div>
+        <h3 class="inc-title">Sellers on a free trial were charged four times the published rate</h3>
+        <dl class="inc-rows">
+          <div class="inc-row broke">
+            <dt>Symptom</dt>
+            <dd>One live seller was billed ₦4,120 in platform fees on a ₦103,000 order. At the rate published in our own terms it should have been ₦1,030.</dd>
+          </div>
+          <div class="inc-row">
+            <dt>Cause</dt>
+            <dd>A store inside its 14-day trial is stored as <code>plan: 'free'</code>. The fee lookup read that stored value — but <code>free</code> isn't a rate we publish, so it fell through to the wrong one. The trial's <em>effective</em> plan is <code>growth_trial</code>.</dd>
+          </div>
+          <div class="inc-row fixed">
+            <dt>Fix</dt>
+            <dd>Every fee lookup now keys on <code>getEffectivePlan(sub)</code> and takes the subscription document, never a plan string. Trial, expired and free all alias onto the published Growth rate.</dd>
+          </div>
+          <div class="inc-row">
+            <dt>Learned</dt>
+            <dd>Derived state needs one resolver and no second readers. The invariant is now a unit test: a store inside its trial bills at 1%, and reading <code>sub.plan</code> directly is asserted against, because that is precisely what broke it.</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="incident">
+        <div class="inc-top">
+          <span class="inc-id">INC-05 · silent failure</span>
+          <span class="inc-status">Resolved</span>
+        </div>
+        <h3 class="inc-title">Renewing sellers were locked out with no warning email</h3>
+        <dl class="inc-rows">
+          <div class="inc-row broke">
+            <dt>Symptom</dt>
+            <dd>Sellers who renewed still hit a hard lock at the next expiry, having received none of the warning emails that are supposed to precede it.</dd>
+          </div>
+          <div class="inc-row">
+            <dt>Cause</dt>
+            <dd>Reminder and dunning emails de-duplicate against <code>remindersSent</code> and <code>dunningsSent</code>. Renewal extended the subscription but left both arrays populated, so every subsequent reminder looked already-sent and was skipped.</dd>
+          </div>
+          <div class="inc-row fixed">
+            <dt>Fix</dt>
+            <dd>Every renewal path clears both arrays. Six files touch those flags, and missing any one leaves the bug alive on that path — so I fixed them together and backfilled the sellers already stuck in the broken state.</dd>
+          </div>
+          <div class="inc-row">
+            <dt>Learned</dt>
+            <dd>A de-duplication flag becomes a lie the moment the thing it guards resets. And patching forward isn't enough once bad state is in the database — the repair script matters as much as the fix.</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="incident">
+        <div class="inc-top">
+          <span class="inc-id">INC-06 · blast radius</span>
+          <span class="inc-status">Resolved</span>
+        </div>
+        <h3 class="inc-title">Rotating one secret took out most of the payment reminders</h3>
+        <dl class="inc-rows">
+          <div class="inc-row broke">
+            <dt>Symptom</dt>
+            <dd>Payment nudges to customers stopped going out after a routine credential rotation.</dd>
+          </div>
+          <div class="inc-row">
+            <dt>Cause</dt>
+            <dd>The cron endpoint is gated on <code>CRON_SECRET</code>. An external scheduler had been calling it every thirty minutes for months, and nothing in the repository recorded that it existed. Rotating the secret locked it out.</dd>
+          </div>
+          <div class="inc-row fixed">
+            <dt>Fix</dt>
+            <dd>Restored the consumer with the new credential, and documented it where the next person will actually look — next to the endpoint it calls.</dd>
+          </div>
+          <div class="inc-row">
+            <dt>Learned</dt>
+            <dd>Grep only finds the callers you own. Before rotating any shared credential I now inventory who authenticates with it, including things configured once in a browser years ago and never written down.</dd>
+          </div>
+        </dl>
+      </article>
+
     </div>
+  </section>
+
+  <!-- ─────────── ALSO SHIPPED ─────────── -->
+  <section class="sec shell" id="also">
+    <div class="sec-head">
+      <p class="eyebrow">Log</p>
+      <h2 class="h-sec">Also shipped</h2>
+      <p class="lede">Smaller entries, same system. Written up briefly because the detail above already makes the point.</p>
+    </div>
+
+    <ul class="also">
+      <li>Migrated the AI agent off Twilio onto the WhatsApp Cloud API</li>
+      <li>Added Instagram DM as a third sales channel</li>
+      <li>Voice notes in and out, transcribed through Azure Speech</li>
+      <li>Model routing by language — a cheaper model for English and Pidgin, a stronger one for Yoruba, Igbo and Hausa</li>
+      <li>HMAC signature verification on every inbound Meta webhook</li>
+      <li>A cross-instance lock so two serverless invocations can't answer the same conversation</li>
+      <li>Automatic refund when an order is paid for but the item is out of stock</li>
+      <li>A guard so paying for a cancelled order flags a refund instead of resurrecting the order</li>
+      <li>Per-vendor LLM spend tracked in micro-USD, on an admin dashboard</li>
+      <li>Storefront caching with tag-based revalidation</li>
+      <li>Sitemap and canonical fixes that took storefronts off orphan pages</li>
+      <li>Rate limiting, security headers and an admin audit trail</li>
+    </ul>
   </section>
 
   <!-- ─────────── CAPABILITIES ─────────── -->
