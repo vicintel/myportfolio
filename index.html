@@ -791,6 +791,31 @@ img{max-width:100%;height:auto;display:block}
         <div class="entry-ref">04</div>
         <div class="entry-period">2026</div>
         <div>
+          <h3 class="entry-name">Shortlist</h3>
+          <p class="entry-role">Solo build · open source</p>
+          <p class="entry-desc">
+            A daily funnel over roughly 3,400 engineering vacancies, pulled from public
+            Greenhouse, Lever and Ashby board APIs and from my own LinkedIn alert emails
+            read over IMAP. It scores each role against a structured profile, opens every
+            shortlisted link to confirm the posting still exists, and emails a ranked short
+            list each morning. The interesting part is what it refuses to do: it scrapes
+            nothing that forbids it, and it never applies on my behalf.
+          </p>
+          <div class="entry-links">
+            <a href="https://github.com/vicintel/shortlist" target="_blank" rel="noopener noreferrer">Source ↗</a>
+            <a href="#inc-shortlist">Why it opens every link ↓</a>
+          </div>
+        </div>
+        <div class="entry-val">
+          3,427<small>scanned per run</small>
+          116<small>tests</small>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-ref">05</div>
+        <div class="entry-period">2026</div>
+        <div>
           <h3 class="entry-name">DeFi Dashboard</h3>
           <p class="entry-role">Solo build</p>
           <p class="entry-desc">
@@ -808,7 +833,7 @@ img{max-width:100%;height:auto;display:block}
       </article>
 
       <article class="entry">
-        <div class="entry-ref">05</div>
+        <div class="entry-ref">06</div>
         <div class="entry-period">2023</div>
         <div>
           <h3 class="entry-name">Data &amp; ML</h3>
@@ -836,7 +861,7 @@ img{max-width:100%;height:auto;display:block}
   <section class="sec shell" id="incidents">
     <div class="sec-head">
       <p class="eyebrow">Post-mortems</p>
-      <h2 class="h-sec">Six things that broke</h2>
+      <h2 class="h-sec">Seven things that broke</h2>
       <p class="lede">A feature list says what I built. These say how I think when it goes wrong, which is the part of the job that actually costs money.</p>
     </div>
 
@@ -998,7 +1023,33 @@ img{max-width:100%;height:auto;display:block}
         </dl>
       </article>
 
-    </div>
+          <article class="incident" id="inc-shortlist">
+        <div class="inc-top">
+          <span class="inc-id">INC-07 · shortlist</span>
+          <span class="inc-status">Resolved</span>
+        </div>
+        <h3 class="inc-title">A job board that answers 200 for a job that is gone</h3>
+        <dl class="inc-rows">
+          <div class="inc-row broke">
+            <dt>Symptom</dt>
+            <dd>Links in my morning digest opened on an empty page. The tool was recommending roles that no longer existed.</dd>
+          </div>
+          <div class="inc-row">
+            <dt>Cause</dt>
+            <dd>Ashby serves its board shell with <code>HTTP 200</code> for a posting it cannot resolve. One company runs the posting API but leaves its hosted board dark, so the API hands out URLs that render nothing. No status code ever says so.</dd>
+          </div>
+          <div class="inc-row fixed">
+            <dt>Fix</dt>
+            <dd>A verification stage that opens each shortlisted link and asks whether the page still names that job, reading the bootstrap payload, the title and the role's own words. It fails open: a timeout or a 429 marks nothing dead, so a flaky connection cannot silently empty the digest.</dd>
+          </div>
+          <div class="inc-row">
+            <dt>Learned</dt>
+            <dd>My first checker searched the HTML for <code>404</code> and declared six live jobs dead. The string was inside SVG path data (<code>13.3404</code>). A test now carries those exact coordinates.</dd>
+          </div>
+        </dl>
+      </article>
+
+</div>
   </section>
 
   <!-- ─────────── ALSO SHIPPED ─────────── -->
