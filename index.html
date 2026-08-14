@@ -756,9 +756,6 @@ img{max-width:100%;height:auto;display:block}
             riders and customers: merchant onboarding, order routing and delivery tracking. I
             lead the team building them across web, mobile and backend.
           </p>
-          <div class="entry-links">
-            <a href="https://favgrab.com/" target="_blank" rel="noopener noreferrer">favgrab.com ↗</a>
-          </div>
         </div>
         <div class="entry-val">
           Live<small>platform</small>
@@ -770,6 +767,32 @@ img{max-width:100%;height:auto;display:block}
         <div class="entry-ref">03</div>
         <div class="entry-period">2026</div>
         <div>
+          <h3 class="entry-name">Ledger</h3>
+          <p class="entry-role">Solo build · open source</p>
+          <p class="entry-desc">
+            A double-entry ledger for marketplace payouts, in TypeScript on Postgres. I rebuilt
+            the MongoDB ledger that runs in Myshoplet production to find out which of the
+            safeguards I had written by hand the database could enforce instead. Most of them:
+            a retried webhook becomes a unique constraint, platform fees and gateway costs become
+            separate accounts rather than sibling columns kept apart by a comment, and a balance
+            derived from its entries cannot drift from them. Every transaction must sum to zero,
+            checked at commit even when the TypeScript is bypassed entirely.
+          </p>
+          <div class="entry-links">
+            <a href="https://github.com/vicintel/ledger" target="_blank" rel="noopener noreferrer">Source ↗</a>
+            <a href="#inc-money-path">The bug it answers ↓</a>
+          </div>
+        </div>
+        <div class="entry-val">
+          20<small>tests</small>
+          Postgres<small>typescript</small>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-ref">04</div>
+        <div class="entry-period">2026</div>
+        <div>
           <h3 class="entry-name">Bloom</h3>
           <p class="entry-role">Solo build</p>
           <p class="entry-desc">
@@ -777,7 +800,6 @@ img{max-width:100%;height:auto;display:block}
             and personalised insights, shipped to iOS, Android and web from one Flutter codebase.
           </p>
           <div class="entry-links">
-            <a href="https://bloom-app-iota.vercel.app" target="_blank" rel="noopener noreferrer">Live demo ↗</a>
             <a href="https://github.com/vicintel/bloom-app" target="_blank" rel="noopener noreferrer">Source ↗</a>
           </div>
         </div>
@@ -788,7 +810,7 @@ img{max-width:100%;height:auto;display:block}
       </article>
 
       <article class="entry">
-        <div class="entry-ref">04</div>
+        <div class="entry-ref">05</div>
         <div class="entry-period">2026</div>
         <div>
           <h3 class="entry-name">Shortlist</h3>
@@ -802,7 +824,6 @@ img{max-width:100%;height:auto;display:block}
             nothing that forbids it, and it never applies on my behalf.
           </p>
           <div class="entry-links">
-            <a href="https://github.com/vicintel/shortlist" target="_blank" rel="noopener noreferrer">Source ↗</a>
             <a href="#inc-shortlist">Why it opens every link ↓</a>
           </div>
         </div>
@@ -813,7 +834,7 @@ img{max-width:100%;height:auto;display:block}
       </article>
 
       <article class="entry">
-        <div class="entry-ref">05</div>
+        <div class="entry-ref">06</div>
         <div class="entry-period">2026</div>
         <div>
           <h3 class="entry-name">DeFi Dashboard</h3>
@@ -823,7 +844,6 @@ img{max-width:100%;height:auto;display:block}
             CoinGecko and full Ethereum transaction history.
           </p>
           <div class="entry-links">
-            <a href="https://defi-dashboard-puce.vercel.app" target="_blank" rel="noopener noreferrer">Live demo ↗</a>
             <a href="https://github.com/vicintel/defi-dashboard" target="_blank" rel="noopener noreferrer">Source ↗</a>
           </div>
         </div>
@@ -833,7 +853,7 @@ img{max-width:100%;height:auto;display:block}
       </article>
 
       <article class="entry">
-        <div class="entry-ref">06</div>
+        <div class="entry-ref">07</div>
         <div class="entry-period">2023</div>
         <div>
           <h3 class="entry-name">Data &amp; ML</h3>
@@ -867,7 +887,7 @@ img{max-width:100%;height:auto;display:block}
 
     <div class="inc-grid">
 
-      <article class="incident">
+      <article class="incident" id="inc-money-path">
         <div class="inc-top">
           <span class="inc-id">INC-01 · money path</span>
           <span class="inc-status">Resolved</span>
