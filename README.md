@@ -13,6 +13,7 @@ storefront and sales platform where I own the whole stack.
   so it couldn't happen again. The most honest page on the site.
 - **Also shipped** — a running log of smaller things
 - **What I work in** — the stack, without the skill-bar theatre
+- **Verified credential** — Google AI Professional Certificate and supplied course records
 - **[CV](https://myportfolio-one-eta-18.vercel.app/cv.html)** — a printable one-pager
 
 ## How it's built
@@ -22,10 +23,12 @@ framework, no build step, no dependencies to rot. Two pages, some images, deploy
 straight to Vercel.
 
 ```
-index.html   the site
-cv.html      printable CV
-images/      photos and project screenshots
-og-card.png  1200×630 social preview
+index.html     the site
+cv.html        printable CV
+certificates/  verified credential images
+g1.jpeg/g2.jpeg profile photos
+myshoplet.png  project screenshot
+og-card.png    1200×630 social preview
 ```
 
 ## Running it locally

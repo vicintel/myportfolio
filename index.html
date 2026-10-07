@@ -546,6 +546,104 @@ img{max-width:100%;height:auto;display:block}
 }
 .cap li:last-child{border-bottom:0}
 
+/* ─────────── credential ─────────── */
+.credential-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(18rem,.85fr);
+  gap:clamp(1.5rem,4vw,3.25rem);
+  align-items:start;
+}
+.credential-proof{
+  margin:0;
+  padding:.55rem;
+  border:1px solid var(--rule);
+  background:var(--paper-deep);
+}
+.credential-proof a{display:block}
+.credential-proof img{width:100%;border:1px solid var(--rule)}
+.credential-copy{padding-top:.15rem}
+.credential-title{
+  font-family:var(--wide);
+  font-variation-settings:'wdth' 112,'wght' 760;
+  font-size:clamp(1.8rem,3.8vw,2.8rem);
+  line-height:1;
+  letter-spacing:-.02em;
+  margin:.5rem 0 0;
+  text-wrap:balance;
+}
+.credential-status{
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  margin-top:1.2rem;
+  font-family:var(--mono);
+  font-size:.68rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--credit);
+}
+.credential-status::before{
+  content:'✓';
+  width:1.25rem;height:1.25rem;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--credit);
+  border-radius:50%;
+}
+.credential-facts{margin:1.25rem 0 0;border-top:1px solid var(--rule)}
+.credential-fact{
+  display:grid;
+  grid-template-columns:6rem 1fr;
+  gap:.8rem;
+  padding:.6rem 0;
+  border-bottom:1px solid var(--rule);
+}
+.credential-fact dt{
+  font-family:var(--mono);
+  font-size:.64rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.credential-fact dd{margin:0;font-size:.92rem;color:var(--ink-soft)}
+.course-drawer{margin-top:1.75rem;border-top:1px solid var(--ink)}
+.course-drawer summary{
+  cursor:pointer;
+  padding:.75rem 0;
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.course-drawer summary:hover{color:var(--ink)}
+.course-strip{
+  display:flex;
+  gap:1rem;
+  overflow-x:auto;
+  padding:.25rem 0 1rem;
+  scroll-snap-type:x proximity;
+}
+.course-card{
+  width:min(72vw,17rem);
+  flex:0 0 auto;
+  scroll-snap-align:start;
+  text-decoration:none;
+}
+.course-card img{width:100%;border:1px solid var(--rule);background:var(--paper-deep)}
+.course-card span{
+  display:block;
+  margin-top:.5rem;
+  font-family:var(--mono);
+  font-size:.66rem;
+  line-height:1.4;
+  color:var(--ink-soft);
+}
+.course-card:hover span{text-decoration:underline;text-decoration-color:var(--credit)}
+@media(max-width:820px){
+  .credential-grid{grid-template-columns:1fr}
+  .credential-copy{padding-top:0}
+}
+
 /* ─────────── contact ─────────── */
 .contact-grid{
   display:grid;
@@ -619,6 +717,7 @@ img{max-width:100%;height:auto;display:block}
       <a href="#incidents">Incidents</a>
       <a class="opt" href="#also">Log</a>
       <a class="opt" href="#capabilities">Capabilities</a>
+      <a class="opt" href="#credential">Credential</a>
       <a class="opt" href="cv.html">CV</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -1154,6 +1253,58 @@ img{max-width:100%;height:auto;display:block}
         </ul>
       </div>
     </div>
+  </section>
+
+  <!-- ─────────── CREDENTIAL ─────────── -->
+  <section class="sec shell" id="credential">
+    <div class="credential-grid">
+      <figure class="credential-proof">
+        <a href="https://coursera.org/verify/professional-cert/PUYLK98ZREJG" target="_blank" rel="noopener noreferrer" aria-label="Verify the Google AI Professional Certificate on Coursera">
+          <img src="certificates/google-ai-professional-certificate.jpg" alt="Google AI Professional Certificate awarded to Victor C Dickson on October 7, 2026" width="1649" height="1275" loading="lazy">
+        </a>
+      </figure>
+
+      <div class="credential-copy">
+        <p class="eyebrow">Verified credential · 2026</p>
+        <h2 class="credential-title">Google AI Professional Certificate</h2>
+        <p class="lede">
+          Eight courses covering responsible AI use across research, communication,
+          content creation, data analysis, coding, app building and deployment.
+          The programme included more than 20 practical artefacts and a custom AI solution.
+        </p>
+        <div class="credential-status">Identity and completion verified by Coursera</div>
+        <dl class="credential-facts">
+          <div class="credential-fact"><dt>Provider</dt><dd>Google Career Certificates · Coursera</dd></div>
+          <div class="credential-fact"><dt>Issued</dt><dd>7 October 2026</dd></div>
+          <div class="credential-fact"><dt>Scope</dt><dd>8 courses · applied AI · responsible deployment</dd></div>
+        </dl>
+        <div class="actions">
+          <a class="btn" href="https://coursera.org/verify/professional-cert/PUYLK98ZREJG" target="_blank" rel="noopener noreferrer">Verify credential ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <details class="course-drawer">
+      <summary>View the four supplied course certificates</summary>
+      <div class="course-strip">
+        <a class="course-card" href="https://coursera.org/verify/9TGQTCYTT76R" target="_blank" rel="noopener noreferrer">
+          <img src="certificates/ai-fundamentals.jpg" alt="AI Fundamentals course certificate" width="1649" height="1275" loading="lazy">
+          <span>AI Fundamentals · verify ↗</span>
+        </a>
+        <a class="course-card" href="https://coursera.org/verify/P035FVZBHICB" target="_blank" rel="noopener noreferrer">
+          <img src="certificates/ai-brainstorming-planning.jpg" alt="AI for Brainstorming and Planning course certificate" width="1649" height="1275" loading="lazy">
+          <span>AI for Brainstorming and Planning · verify ↗</span>
+        </a>
+        <a class="course-card" href="https://coursera.org/verify/VZ5NXNBEYMOD" target="_blank" rel="noopener noreferrer">
+          <img src="certificates/ai-app-building.jpg" alt="AI for App Building course certificate" width="1649" height="1275" loading="lazy">
+          <span>AI for App Building · verify ↗</span>
+        </a>
+        <a class="course-card" href="https://coursera.org/verify/39X53J46IJFI" target="_blank" rel="noopener noreferrer">
+          <img src="certificates/ai-app-deployment.jpg" alt="AI for App Deployment course certificate" width="1772" height="928" loading="lazy">
+          <span>AI for App Deployment · verify ↗</span>
+        </a>
+      </div>
+    </details>
   </section>
 
   <!-- ─────────── CONTACT ─────────── -->
