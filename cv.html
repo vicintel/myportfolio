@@ -231,7 +231,7 @@ a:hover{text-decoration-color:var(--credit)}
       Full-stack engineer specialising in commerce and payments infrastructure. I build and
       operate <strong>Myshoplet</strong> — a Nigerian commerce platform with Paystack payments,
       subscription billing, payouts, KYC/KYB verification and an LLM sales agent live across
-      WhatsApp, Instagram and voice notes — written and run solo across 117K lines and 7,800+
+      WhatsApp, Instagram and voice notes — written and run solo across 159K lines and 8,900+
       commits. Also CTO at <strong>FavGrab</strong>, an on-demand delivery platform in Southeast
       Nigeria. Comfortable across the whole stack: Next.js and React on the front, Node/Express
       and MongoDB behind it, and the webhooks, queues, caching and deploy pipeline in between.
@@ -249,12 +249,14 @@ a:hover{text-decoration-color:var(--credit)}
       </div>
       <p class="job-org">Myshoplet · Lagos, Nigeria</p>
       <ul>
-        <li>Designed, built and operate a full commerce platform solo — Next.js 14 frontend, Express/MongoDB backend, 46 data models and 39 API routes across 117K lines of code and 7,800+ commits</li>
+        <li>Designed, built and operate a full commerce platform solo — Next.js 14 frontend, Express/MongoDB backend, 57 data models and 43 route modules across 159K lines of code and 8,900+ commits</li>
         <li>Built the payments layer end to end: Paystack integration, HMAC webhook signature verification, idempotent money-path writes, subscription billing with dunning, payout clearance holds, and KYC/KYB verification tiers</li>
+        <li>Shipped dedicated virtual bank accounts for stores, with webhook-confirmed transfers that credit vendor wallets and give the AI sales agent a bank-transfer option alongside card checkout</li>
         <li>Diagnosed and fixed a double-payment bug caused by webhook retries, making the payout write conditional and idempotent with a <code>$ne</code>-filtered <code>updateOne</code></li>
         <li>Found and fixed a billing fault that charged trial sellers four times the published platform fee (₦4,120 instead of ₦1,030 on one ₦103,000 order), by routing every fee lookup through a single effective-plan resolver and locking the invariant in a unit test</li>
         <li>Traced a silent lockout to reminder de-duplication flags surviving renewal, fixed every renewal path and backfilled the sellers already in the broken state</li>
         <li>Shipped an LLM sales agent to production across three channels — WhatsApp Cloud API, Instagram DM and voice notes — with per-tenant cost tracking, language-based model routing and anti-hallucination guardrails</li>
+        <li>Built storefront discovery infrastructure for Google and AI search: product and merchant schema, canonical URLs, sitemaps, IndexNow publishing and per-store <code>/llms.txt</code> feeds</li>
         <li>Cut dashboard latency by collapsing 43 database round trips into 3 with a single aggregation using conditional accumulators, after profiling showed the cost was network latency rather than query time</li>
         <li>Reduced storefront image payload 74% (1,852KB → 467KB) by transforming at the CDN delivery layer</li>
         <li>Own the full lifecycle: staging/production branching, deploy pipeline, Sentry monitoring, security hardening and incident response</li>

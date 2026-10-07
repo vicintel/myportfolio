@@ -9,7 +9,7 @@ storefront and sales platform where I own the whole stack.
 ## What's on it
 
 - **The work** — the systems I've shipped and what they actually do
-- **Six things that broke** — production incidents, what went wrong, and what I changed
+- **Seven things that broke** — production incidents, what went wrong, and what I changed
   so it couldn't happen again. The most honest page on the site.
 - **Also shipped** — a running log of smaller things
 - **What I work in** — the stack, without the skill-bar theatre

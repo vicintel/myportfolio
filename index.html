@@ -644,7 +644,7 @@ img{max-width:100%;height:auto;display:block}
 
         <p class="lede">
           I build the systems Nigerian businesses sell on: payments that reconcile,
-          deliveries that arrive, and AI agents that talk to real customers about real money.
+          bank transfers that confirm themselves, and AI agents that turn conversations into orders.
         </p>
 
         <dl class="facts">
@@ -727,11 +727,12 @@ img{max-width:100%;height:auto;display:block}
           <h3 class="entry-name">Myshoplet</h3>
           <p class="entry-role">Founder &amp; lead engineer</p>
           <p class="entry-desc">
-            A commerce platform for Nigerian sellers. Storefronts, Paystack payments,
-            subscription billing with dunning, payouts with clearance holds, KYC and KYB
-            verification tiers, delivery booking, and an AI sales agent that negotiates and
-            closes orders over WhatsApp, Instagram DM and voice notes. Designed, built and
-            operated solo, including the deploy pipeline and the incident response.
+            A commerce platform for Nigerian sellers. Storefronts, point of sale, Paystack
+            checkout, dedicated virtual bank accounts with automatic transfer confirmation,
+            subscription billing, payouts, KYC/KYB, delivery booking, and one AI sales agent
+            that sells across WhatsApp and Instagram. Each store also ships with structured
+            product data, sitemaps and an AI-readable catalogue. Designed, built and operated
+            solo, including the deploy pipeline and incident response.
           </p>
           <div class="entry-links">
             <a href="https://myshoplet.com" target="_blank" rel="noopener noreferrer">myshoplet.com ↗</a>
@@ -739,8 +740,8 @@ img{max-width:100%;height:auto;display:block}
           </div>
         </div>
         <div class="entry-val">
-          117,446<small>lines</small>
-          7,824<small>commits</small>
+          159,742<small>lines</small>
+          8,935<small>commits</small>
         </div>
       </article>
 
@@ -1081,8 +1082,9 @@ img{max-width:100%;height:auto;display:block}
     </div>
 
     <ul class="also">
+      <li>Dedicated virtual bank accounts for stores, with webhook-confirmed transfers credited to vendor wallets</li>
+      <li>One AI sales agent across WhatsApp and Instagram that quotes products, offers card or bank transfer, and confirms payment</li>
       <li>Migrated the AI agent off Twilio onto the WhatsApp Cloud API</li>
-      <li>Added Instagram DM as a third sales channel</li>
       <li>Voice notes in and out, transcribed through Azure Speech</li>
       <li>Model routing by language — a cheaper model for English and Pidgin, a stronger one for Yoruba, Igbo and Hausa</li>
       <li>HMAC signature verification on every inbound Meta webhook</li>
@@ -1091,7 +1093,8 @@ img{max-width:100%;height:auto;display:block}
       <li>A guard so paying for a cancelled order flags a refund instead of resurrecting the order</li>
       <li>Per-vendor LLM spend tracked in micro-USD, on an admin dashboard</li>
       <li>Storefront caching with tag-based revalidation</li>
-      <li>Sitemap and canonical fixes that took storefronts off orphan pages</li>
+      <li>Storefront SEO and AI discovery feeds: product schema, sitemaps, canonical URLs, IndexNow and <code>/llms.txt</code></li>
+      <li>Point-of-sale orders running through the same inventory, payments and reporting as online sales</li>
       <li>Rate limiting, security headers and an admin audit trail</li>
     </ul>
   </section>
@@ -1124,6 +1127,7 @@ img{max-width:100%;height:auto;display:block}
           <li>Idempotent writes</li>
           <li>Subscriptions · dunning</li>
           <li>Payouts · clearance holds</li>
+          <li>Dedicated virtual accounts</li>
           <li>KYC / KYB tiers</li>
         </ul>
       </div>
